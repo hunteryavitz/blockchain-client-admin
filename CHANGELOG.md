@@ -11,3 +11,4 @@ Unreleased
 - [Add GH_TOKEN to Deployment YAML](#7)
 - [Correct KEY for 'GITHUB_TOKEN'](#9)
 - [Correct KEY Text](#11)
+- [Add Unit Test to Deployment](#13)
