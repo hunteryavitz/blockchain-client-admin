@@ -1,18 +1,4 @@
 # Blockchain Admin Client
-<<<<<<< HEAD
-This client is the admin panel for the blockchain project.
-
-### Objective
-This client serves as the admin panel for the blockchain project.
-
-### Details
-
-### Summary
-
-### Related
-
-### Extra
-=======
 **Last Updated:** 7/8/23
 
 This is the admin panel for front-end client for the blockchain project.
@@ -51,4 +37,3 @@ This client is a component of the [Blockchain Project](https://github.com/hunter
 Feel free to download, modify, or use in any way.
 
 Developer: [Hunter Yavitz](mailto:h.yavitz@gmail.com)
->>>>>>> 11

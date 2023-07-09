@@ -30,10 +30,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-<<<<<<< HEAD
-        with: 
-          fetch-depth: 0
-=======
         with:
           fetch-depth: 0
 
@@ -44,7 +40,6 @@ jobs:
 
       - name: Install dependencies
         run: yarn install  # Use yarn to install dependencies
->>>>>>> 11
 
       - name: Build
         run: yarn build  # Use yarn to run the build script
@@ -52,10 +47,6 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
-<<<<<<< HEAD
-          token: ${{ secrets.GH_TOKEN }}
-=======
           token: ${{ secrets.GITHUB_TOKEN }}
->>>>>>> 11
           branch: gh-pages
           folder: dist
