@@ -1,26 +1,61 @@
-name: Build and Deploy
+name: Build, Test and Deploy
+
 on:
   push:
     branches:
       - main
 
 jobs:
-  build-and-deploy:
+  test:
+    name: Run Unit Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # use the Node.js version that matches your project
+
+      - name: Install dependencies
+        run: yarn install  # Use yarn to install dependencies
+
+      - name: Run vitest
+        run: yarn vitest  # Use yarn to run vitest
+
+  build-and-deploy:
+    needs: test  # this ensures the test job completes successfully before this job runs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+<<<<<<< HEAD
         with: 
           fetch-depth: 0
+=======
+        with:
+          fetch-depth: 0
 
-      - name: Install and Build
-        run: |
-          npm install
-          npm run build
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # use the Node.js version that matches your project
+
+      - name: Install dependencies
+        run: yarn install  # Use yarn to install dependencies
+>>>>>>> 11
+
+      - name: Build
+        run: yarn build  # Use yarn to run the build script
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
+<<<<<<< HEAD
           token: ${{ secrets.GH_TOKEN }}
+=======
+          token: ${{ secrets.GITHUB_TOKEN }}
+>>>>>>> 11
           branch: gh-pages
           folder: dist
