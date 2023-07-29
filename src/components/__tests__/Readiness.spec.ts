@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import ReadinessCheck from '/src/components/ReadinessCheck.vue'
+import ReadinessCheck from '../ReadinessCheck.vue'
+
 
 describe('ReadinessCheck.vue', () => {
     it('shows error message when fetch fails', async () => {
