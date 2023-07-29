@@ -2,6 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import Counter from "@/components/Counter.vue";
+import ReadinessCheck from "@/components/ReadinessCheck.vue";
 </script>
 
 <template>
@@ -12,6 +13,7 @@ import Counter from "@/components/Counter.vue";
       <HelloWorld msg="Blockchain Admin Panel" />
       <hr />
       <div>
+        <ReadinessCheck />
         <Counter />
       </div>
 
