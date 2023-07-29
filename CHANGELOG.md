@@ -5,6 +5,12 @@ Unreleased
 
 ---
 
+**7/29/23**
+
+- [Create Simple UI to Check API Readiness](#19)
+
+---
+
 **7/9/23**
 
 - [Upgrade Node Version in Build Stage](#17)
