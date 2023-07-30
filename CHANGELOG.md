@@ -5,6 +5,12 @@ Unreleased
 
 ---
 
+**7/30/23**
+
+- [Resolve Failing Unit Test - Readiness Check](#21)
+
+---
+
 **7/29/23**
 
 - [Create Simple UI to Check API Readiness](#19)
