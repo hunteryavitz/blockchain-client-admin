@@ -1,1 +1,0 @@
-import{_ as t,o,c as s,a as e}from"./index-dea64a04.js";const _={},a={class:"about"},n=e("h1",null,"This is an about page",-1),c=e("p",null,"This is all about the blockchain admin panel.",-1),i=[n,c];function l(r,u){return o(),s("div",a,i)}const h=t(_,[["render",l]]);export{h as default};
