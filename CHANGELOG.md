@@ -3,11 +3,16 @@ Unreleased
 
 *v0.0.1*
 
+**7/31/23**
+
+- [Create Mock UI](#23)
+
 ---
 
 **7/30/23**
 
 - [Resolve Failing Unit Test - Readiness Check](#21)
+- [Restore Yarn Package Manager](#23)
 
 ---
 
