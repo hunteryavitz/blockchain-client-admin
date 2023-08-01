@@ -1,16 +1,7 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-    <p>This is all about the blockchain admin panel.</p>
-  </div>
+  <main>
+    <h1>About</h1>
+    <h3>This is the about page for the blockchain admin panel.</h3>
+    <small>There will be some about text here at some point.  It will be incredible.</small>
+  </main>
 </template>
-
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>
