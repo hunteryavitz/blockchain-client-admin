@@ -1,0 +1,1 @@
+import{_ as t,o,c as n,a as e}from"./index-fc0386c5.js";const s={},a=e("h1",null,"About",-1),c=e("h3",null,"This is the about page for the blockchain admin panel.",-1),l=e("small",null,"There will be some about text here at some point. It will be incredible.",-1),i=[a,c,l];function _(r,h){return o(),n("main",null,i)}const d=t(s,[["render",_]]);export{d as default};
