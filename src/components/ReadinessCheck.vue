@@ -1,8 +1,9 @@
 <template>
   <div>
+    <h1>Health Check</h1>
     <button @click="checkReadiness">Check Readiness</button>
-    <p v-if="loading">Loading...</p>
-    <p v-else>{{ readinessMessage }}</p>
+      <p :style="{color: messageColor}" v-if="loading">Loading...</p>
+      <p :style="{color: messageColor}" v-else>{{ readinessMessage }}</p>
   </div>
 </template>
 
@@ -14,10 +15,12 @@ export default {
 
   setup() {
     const loading = ref(false);
-    const readinessMessage = ref('');
+    const readinessMessage = ref('Awaiting readiness check.');
+    const messageColor = ref('white');
 
     const checkReadiness = async () => {
       loading.value = true;
+      messageColor.value = 'white';
 
       try {
         const response = await fetch('http://localhost:8080/api/v1/readiness');
@@ -25,11 +28,14 @@ export default {
 
         if (isReady) {
           readinessMessage.value = 'System is ready.';
+          messageColor.value = 'green';
         } else {
           readinessMessage.value = 'System is not ready.';
+          messageColor.value = 'red';
         }
       } catch (error) {
         readinessMessage.value = 'Error occurred while fetching readiness status.';
+        messageColor.value = 'red';
       } finally {
         loading.value = false;
       }
@@ -39,6 +45,7 @@ export default {
       loading,
       readinessMessage,
       checkReadiness,
+      messageColor
     };
   },
 };

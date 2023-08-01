@@ -7,24 +7,25 @@ import ReadinessCheck from "@/components/ReadinessCheck.vue";
 
 <template>
   <header>
-    <img alt="blockchain" class="logo" src="@/assets/chain.png" width="1024" height="480" />
-
-    <div class="wrapper">
+    <main class="wrapper">
       <HelloWorld msg="Blockchain Admin Panel" />
-      <hr />
-      <div>
-        <ReadinessCheck />
-        <Counter />
-      </div>
-
+      <br />
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
-    </div>
+      <br />
+      <div>
+        <Counter class="ui-component" />
+        <ReadinessCheck class="ui-component" />
+      </div>
+    </main>
   </header>
 
-  <RouterView />
+  <main>
+    <img class="img-component" alt="blockchain" src="@/assets/chain.png" width="512" />
+    <RouterView />
+  </main>
 </template>
 
 <style scoped>
@@ -33,9 +34,22 @@ header {
   max-height: 100vh;
 }
 
-.logo {
+main {
+  padding: 2rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  background-color: black;
+}
+
+.img-component {
   display: block;
-  margin: 0 auto 2rem;
+  margin: 5rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+}
+
+.ui-component {
+  margin-bottom: 3rem;
 }
 
 nav {
@@ -68,10 +82,6 @@ nav a:first-of-type {
     display: flex;
     place-items: center;
     padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
   }
 
   header .wrapper {
