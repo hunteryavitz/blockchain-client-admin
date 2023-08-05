@@ -1,18 +1,23 @@
-# CHANGELOG
+# Blockchain Admin Client
+
 Unreleased
 
 *v0.0.1*
 
+**8/5/23**
+
+- [Add UI Component to FETCH Blockchain from API](#27)
+
 **7/31/23**
 
-- [Create Mock UI](#23)
+- [Create Mock UI](#25)
 
 ---
 
 **7/30/23**
 
-- [Resolve Failing Unit Test - Readiness Check](#21)
 - [Restore Yarn Package Manager](#23)
+- [Resolve Failing Unit Test - Readiness Check](#21)
 
 ---
 
