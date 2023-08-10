@@ -4,7 +4,7 @@ Unreleased
 
 *v0.0.1*
 
-**8/5/23**
+**8/9/23**
 
 - [Add UI Component to FETCH Blockchain from API](#27)
 
