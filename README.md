@@ -24,6 +24,12 @@ yarn dev
 yarn vitetest
 ```
 
+The admin client has the following functionality:
+
+- Perform Readiness Check
+- Fetch Blockchain from API
+- Verify Blockchain Integrity
+
 ### Summary
 The aim of this client is to provide an admin panel for the blockchain project.
 
