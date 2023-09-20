@@ -3,29 +3,40 @@ import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import Counter from "@/components/Counter.vue";
 import ReadinessCheck from "@/components/ReadinessCheck.vue";
+import PlanetChart from "@/components/PlanetChart.vue";
+import PolarChart from "@/components/PolarChart.vue";
+import Readiness from "@/components/Readiness.vue";
 </script>
 
 <template>
-  <header>
-    <main class="wrapper">
-      <HelloWorld msg="Blockchain Admin Panel" />
-      <br />
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-      <br />
-      <div>
-        <Counter class="ui-component" />
-        <ReadinessCheck class="ui-component" />
-      </div>
-    </main>
-  </header>
+<!--  <header>-->
+<!--    <main class="wrapper">-->
+<!--      <HelloWorld msg="Blockchain Admin Panel" />-->
+<!--      <br />-->
+<!--      <nav>-->
+<!--        <RouterLink to="/">Home</RouterLink>-->
+<!--        <RouterLink to="/about">About</RouterLink>-->
+<!--      </nav>-->
+<!--      <br />-->
+<!--      <div>-->
+<!--        <Counter class="ui-component" />-->
+<!--        <ReadinessCheck class="ui-component" />-->
+<!--      </div>-->
+<!--    </main>-->
+<!--  </header>-->
 
-  <main>
-    <img class="img-component" alt="blockchain" src="@/assets/chain.png" width="512" />
-    <RouterView />
-  </main>
+  <Readiness />
+  <div>
+    Valid: INDICATOR
+  </div>
+
+<!--  <PlanetChart />-->
+<!--  <PolarChart />-->
+
+<!--  <main>-->
+<!--    <img class="img-component" alt="blockchain" src="@/assets/chain.png" width="512" />-->
+<!--    <RouterView />-->
+<!--  </main>-->
 </template>
 
 <style scoped>

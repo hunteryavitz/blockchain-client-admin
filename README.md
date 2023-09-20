@@ -30,6 +30,14 @@ The admin client has the following functionality:
 - Fetch Blockchain from API
 - Verify Blockchain Integrity
 
+There are 2 main components to this web client.  One is blockchain admin facing, which provides metrics on the health of 
+the blockchain.  The other is user facing, which provides a CRUD interface for tracking transactions and transaction 
+life-cycles.
+
+There are 2 main components to this web client.  One is blockchain admin facing, which provides metrics on the health of 
+the blockchain.  The other is user facing, which provides a CRUD interface for tracking transactions and transaction 
+life-cycles.
+
 ### Summary
 The aim of this client is to provide an admin panel for the blockchain project.
 

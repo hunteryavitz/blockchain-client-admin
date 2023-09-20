@@ -4,6 +4,14 @@ Unreleased
 
 *v0.0.1*
 
+**9/XX/23**
+
+- [ADD Dashboard for Overall Health Metrics](#32)
+
+**9/3/23**
+
+- [Add UI Components to Use Remaining Services from API](#29)
+
 **8/9/23**
 
 - [Add UI Component to FETCH Blockchain from API](#27)
