@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="meter">
     <h3>ready: {{ ready }}</h3>
     <h3>live: {{ alive }}</h3>
     <div>
@@ -93,5 +93,11 @@ canvas {
   background-color: #FFFFFF;
   border-radius: 5px;
 }
-
+.meter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem;
+}
 </style>

@@ -26,9 +26,11 @@ import Readiness from "@/components/Readiness.vue";
 <!--  </header>-->
 
   <Readiness />
-  <div>
-    Valid: INDICATOR
-  </div>
+  <Readiness />
+  <Readiness />
+  <Readiness />
+  <Readiness />
+  <Readiness />
 
 <!--  <PlanetChart />-->
 <!--  <PolarChart />-->
