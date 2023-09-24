@@ -36,7 +36,7 @@ onMounted(() => {
 canvas {
   width: 100% !important;
   height: auto !important;
-  background-color: #FFFFFF;
+  background-color: #000;
   border-radius: 5px;
 }
 </style>

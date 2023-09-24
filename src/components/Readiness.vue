@@ -43,25 +43,21 @@ onMounted(async () => {
   await useReadinessStore().checkLiveness()
   setAlive()
   // await getLiveness()
-  setLivenessChartData()
-
-
-  console.log(canvas)
-
+  // setLivenessChartData()
+  renderChart()
 })
 
 const renderChart = () => {
   const canvas = <unknown> livenessChart.value as ChartItem
-
+  let myChart: any
   if (canvas) {
-    console.log('canvas')
-    new Chart(canvas, {
+    myChart = new Chart(canvas, {
       type: "polarArea",
       data: {
         labels: ['Liveness', 'Green', 'Yellow', 'Grey', 'Blue'],
         datasets: [{
           label: 'Initial Dataset',
-          data: [alive.value, 44, 35, 19, 100],
+          data: [alive.value, 44, 35, 19, Math.random() * 100],
           backgroundColor: [
             'rgb(255, 99, 132)',
             'rgb(75, 192, 192)',
@@ -69,20 +65,30 @@ const renderChart = () => {
             'rgb(201, 203, 207)',
             'rgb(54, 162, 235)'
           ],
+          borderColor: [
+            'rgb(50, 50, 50)',
+            'rgb(50, 50, 50)',
+            'rgb(50, 50, 50)',
+            'rgb(50, 50, 50)',
+            'rgb(50, 50, 50)'
+          ],
         }]
       }
     })
   }
+
+  setInterval(async () => {
+    // setReady()
+    await readinessStore.checkLiveness()
+    setAlive()
+    // renderChart()
+    // myChart.update()
+    console.log('setInterval')
+    // setLivenessChartData()
+  }, 5000)
+
 }
 
-setInterval(async () => {
-  // setReady()
-  await readinessStore.checkLiveness()
-  setAlive()
-  renderChart()
-  console.log('setInterval')
-  // setLivenessChartData()
-}, 1000)
 </script>
 
 
@@ -90,7 +96,7 @@ setInterval(async () => {
 canvas {
   width: 100% !important;
   height: auto !important;
-  background-color: #FFFFFF;
+  background-color: #000;
   border-radius: 5px;
 }
 .meter {

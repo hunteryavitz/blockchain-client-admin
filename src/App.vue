@@ -1,44 +1,41 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-import Counter from "@/components/Counter.vue";
-import ReadinessCheck from "@/components/ReadinessCheck.vue";
-import PlanetChart from "@/components/PlanetChart.vue";
-import PolarChart from "@/components/PolarChart.vue";
 import Readiness from "@/components/Readiness.vue";
+import ValidityChart from "@/components/ValidityChart.vue";
+import PlanetChart from "@/components/PlanetChart.vue";
 </script>
 
 <template>
-<!--  <header>-->
-<!--    <main class="wrapper">-->
+  <header>
+    <main class="wrapper">
 <!--      <HelloWorld msg="Blockchain Admin Panel" />-->
-<!--      <br />-->
-<!--      <nav>-->
-<!--        <RouterLink to="/">Home</RouterLink>-->
-<!--        <RouterLink to="/about">About</RouterLink>-->
-<!--      </nav>-->
-<!--      <br />-->
-<!--      <div>-->
+      <br />
+      <nav>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/blockchain-admin">Blockchain Admin</RouterLink>
+        <RouterLink to="/service-admin">Service Admin</RouterLink>
+      </nav>
+      <br />
+      <RouterView />
+
+      <!--      <div>-->
 <!--        <Counter class="ui-component" />-->
 <!--        <ReadinessCheck class="ui-component" />-->
 <!--      </div>-->
-<!--    </main>-->
-<!--  </header>-->
+<!--      <div>-->
+<!--        <RouterView />-->
+<!--      </div>-->
+    </main>
+  </header>
 
-  <Readiness />
-  <Readiness />
-  <Readiness />
-  <Readiness />
-  <Readiness />
-  <Readiness />
-
-<!--  <PlanetChart />-->
 <!--  <PolarChart />-->
 
-<!--  <main>-->
+  <main>
 <!--    <img class="img-component" alt="blockchain" src="@/assets/chain.png" width="512" />-->
-<!--    <RouterView />-->
-<!--  </main>-->
+    <Readiness />
+    <ValidityChart />
+    <PlanetChart />
+  </main>
 </template>
 
 <style scoped>
@@ -52,6 +49,7 @@ main {
   border: 1px solid white;
   border-radius: 0.5rem;
   background-color: black;
+  width: 100%;
 }
 
 .img-component {

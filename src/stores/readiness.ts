@@ -1,6 +1,6 @@
-import {computed, ref} from 'vue'
-import {defineStore} from 'pinia'
-import axios from "axios";
+import { ref } from 'vue'
+import { defineStore } from 'pinia'
+import { HTTP } from "@/api/http-commons";
 
 export const useReadinessStore= defineStore('readiness', () => {
     const readiness = ref(false)
@@ -10,7 +10,7 @@ export const useReadinessStore= defineStore('readiness', () => {
 
     async function checkReadiness() {
         try {
-            await axios.get("https://ninehearts-sandbox.com/api/v1/readiness")
+            await HTTP.get("/readiness")
                 .then((response) => {
                     readiness.value = response.data
                 })
@@ -27,7 +27,7 @@ export const useReadinessStore= defineStore('readiness', () => {
 
     async function checkLiveness() {
         try {
-            await axios.get("https://ninehearts-sandbox.com/api/v1/liveness")
+            await HTTP.get("/liveness")
                 .then((response) => {
                     liveness.value = response.data
                 })
