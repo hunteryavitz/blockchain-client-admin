@@ -1,8 +1,8 @@
 <template>
   <div class="meter">
-    <h3>valid: {{ valid }}</h3>
+    <h3>ready: {{ ready }}</h3>
     <div>
-      <canvas ref="validityChart"></canvas>
+      <canvas ref="readinessChart"></canvas>
     </div>
   </div>
 </template>
@@ -12,40 +12,44 @@ import { Chart, registerables } from 'chart.js'
 import type { ChartItem } from 'chart.js'
 
 import { onMounted, ref } from "vue";
-import { useValidityStore } from "@/stores/validity"
+import { useReadinessStore } from "@/stores/readiness"
 
 Chart.register(...registerables)
 
-const validityChart = ref(null)
+const readinessChart = ref(null)
 
-const validityStore = useValidityStore()
-const valid = ref(false)
+const readinessStore = useReadinessStore()
+const ready = ref(false)
 
-const setValid = () => {
-  valid.value = validityStore.validity
+const setReady = () => {
+  ready.value = readinessStore.readiness
 }
 
-const setValidityChartData = () => {
-  // validityChart.value.data.datasets[0].data[0] = alive.value
+const setReadinessChartData = () => {
+  // readinessChartData.value.data.datasets[0].data[0] = ready.value
 }
 
 onMounted(async () => {
-  await validityStore.checkValidity()
-  setValid()
+  // await useLivenessStore().checkReadiness()
+  // setReady()
+  await useReadinessStore().checkReadiness()
+  setReady()
+  // await getLiveness()
+  // setLivenessChartData()
   renderChart()
-  // setValidityChartData()
 })
 
 setInterval(async () => {
   // setReady()
-  await validityStore.checkValidity()
-  setValid()
+  await readinessStore.checkReadiness()
+  setReady()
   // renderChart()
+  // myChart.update()
   // setLivenessChartData()
 }, 5000)
 
 const renderChart = () => {
-  const canvas = <unknown> validityChart.value as ChartItem
+  const canvas = <unknown> readinessChart.value as ChartItem
 
   if (canvas) {
 
@@ -54,8 +58,8 @@ const renderChart = () => {
       data: {
         labels: ['1', '2', '3'],
         datasets: [{
-          label: 'VALID',
-          data: [0, 1, valid.value ? 1 : 0],
+          label: 'READY',
+          data: [0, 1, ready.value ? 1 : 0],
           backgroundColor: [
             // 'rgba(255, 99, 132, 0.2)',
             'rgba(0, 255, 0, 0.2)',
@@ -69,8 +73,8 @@ const renderChart = () => {
           borderWidth: 1
         },
           {
-            label: 'INVALID',
-            data: [-1, 0, valid.value ? 0 : -1],
+            label: 'NOT READY',
+            data: [-1, 0, ready.value ? 0 : -1],
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               // 'rgba(0, 255, 0, 0.2)',

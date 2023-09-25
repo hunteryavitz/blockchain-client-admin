@@ -1,6 +1,5 @@
 <template>
   <div class="meter">
-    <h3>ready: {{ ready }}</h3>
     <h3>live: {{ alive }}</h3>
     <div>
       <canvas ref="livenessChart"></canvas>
@@ -9,28 +8,21 @@
 </template>
 
 <script setup lang="ts">
-
-// import {getLiveness, livenessChartData} from "@/livenessChartData"
 import { Chart, registerables } from 'chart.js'
 import type { ChartItem } from 'chart.js'
 
 import { onMounted, ref } from "vue";
-import { useReadinessStore } from "@/stores/readiness"
+import { useLivenessStore } from "@/stores/liveness"
 
 Chart.register(...registerables)
 
 const livenessChart = ref(null)
 
-const readinessStore = useReadinessStore()
-const ready = ref(false)
+const livenessStore = useLivenessStore()
 const alive = ref(0.0)
 
-const setReady = () => {
-  ready.value = readinessStore.readiness
-}
-
 const setAlive = () => {
-  alive.value = readinessStore.liveness
+  alive.value = livenessStore.liveness
 }
 
 const setLivenessChartData = () => {
@@ -38,26 +30,36 @@ const setLivenessChartData = () => {
 }
 
 onMounted(async () => {
-  await useReadinessStore().checkReadiness()
-  setReady()
-  await useReadinessStore().checkLiveness()
+  // await useLivenessStore().checkReadiness()
+  // setReady()
+  await livenessStore.checkLiveness()
   setAlive()
   // await getLiveness()
   // setLivenessChartData()
   renderChart()
 })
 
+setInterval(async () => {
+  // setReady()
+  await livenessStore.checkLiveness()
+  setAlive()
+  // renderChart()
+  // myChart.update()
+  // setLivenessChartData()
+}, 5000)
+
 const renderChart = () => {
   const canvas = <unknown> livenessChart.value as ChartItem
-  let myChart: any
+
   if (canvas) {
-    myChart = new Chart(canvas, {
+
+      new Chart(canvas, {
       type: "polarArea",
       data: {
         labels: ['Liveness', 'Green', 'Yellow', 'Grey', 'Blue'],
         datasets: [{
           label: 'Initial Dataset',
-          data: [alive.value, 44, 35, 19, Math.random() * 100],
+          data: [alive.value, 22, 44, 66, 88],
           backgroundColor: [
             'rgb(255, 99, 132)',
             'rgb(75, 192, 192)',
@@ -76,21 +78,8 @@ const renderChart = () => {
       }
     })
   }
-
-  setInterval(async () => {
-    // setReady()
-    await readinessStore.checkLiveness()
-    setAlive()
-    // renderChart()
-    // myChart.update()
-    console.log('setInterval')
-    // setLivenessChartData()
-  }, 5000)
-
 }
-
 </script>
-
 
 <style scoped>
 canvas {

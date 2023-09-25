@@ -1,6 +1,9 @@
 <template>
   <div>
-    <canvas ref="planetChart" width="400" height="400"></canvas>
+    <h3>production: very good</h3>
+    <div>
+      <canvas ref="planetChart"></canvas>
+    </div>
   </div>
 </template>
 

@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import Readiness from "@/components/Readiness.vue";
 import ValidityChart from "@/components/ValidityChart.vue";
+import ReadinessChart from "@/components/ReadinessChart.vue";
+import LivenessChart from "@/components/LivenessChart.vue";
 import PlanetChart from "@/components/PlanetChart.vue";
+import NodeChart from "@/components/NodeChart.vue";
 </script>
 
 <template>
@@ -32,9 +34,13 @@ import PlanetChart from "@/components/PlanetChart.vue";
 
   <main>
 <!--    <img class="img-component" alt="blockchain" src="@/assets/chain.png" width="512" />-->
-    <Readiness />
+    <ReadinessChart />
+    <LivenessChart />
     <ValidityChart />
+  </main>
+  <main>
     <PlanetChart />
+    <NodeChart />
   </main>
 </template>
 
