@@ -1,6 +1,6 @@
 <template>
   <div class="meter">
-    <h3>healthy: {{ healthy }}</h3>
+    <h3>healthy: {{ healthAverage }}</h3>
     <div>
       <canvas ref="healthChart"></canvas>
     </div>
@@ -20,9 +20,11 @@ const healthChart = ref(null)
 
 const healthStore = useHealthStore()
 const healthy = ref([0.0, 0.0, 0.0, 0.0, 0.0])
+const healthAverage = ref(0.0)
 
 const setHealth = () => {
   healthy.value = healthStore.health
+  healthAverage.value = healthStore.average
 }
 
 const setHealthChartData = () => {

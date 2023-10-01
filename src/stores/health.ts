@@ -1,11 +1,14 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { HTTP } from "@/api/http-commons";
 
 export const useHealthStore= defineStore('health', () => {
     // const health = ref(0.0)
-    // define a const array of numbers
     const health = ref([0.0, 0.0, 0.0, 0.0, 0.0])
+
+    const average = computed(() => {
+        return health.value.reduce((a, b) => a + b, 0) / health.value.length
+    })
 
     async function checkHealth() {
         try {
@@ -26,5 +29,6 @@ export const useHealthStore= defineStore('health', () => {
     return {
         health,
         checkHealth,
+        average
     }
 })
