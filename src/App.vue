@@ -4,6 +4,7 @@ import ReadinessChart from "@/components/ReadinessChart.vue";
 import LivenessChart from "@/components/LivenessChart.vue";
 import PlanetChart from "@/components/PlanetChart.vue";
 import NodeChart from "@/components/NodeChart.vue";
+import HealthChart from "@/components/HealthChart.vue";
 </script>
 
 <template>
@@ -41,6 +42,7 @@ import NodeChart from "@/components/NodeChart.vue";
   <main>
     <PlanetChart />
     <NodeChart />
+    <HealthChart />
   </main>
 </template>
 
