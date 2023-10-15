@@ -5,6 +5,7 @@ import LivenessChart from "@/components/LivenessChart.vue";
 import PlanetChart from "@/components/PlanetChart.vue";
 import NodeChart from "@/components/NodeChart.vue";
 import HealthChart from "@/components/HealthChart.vue";
+import ProductionChart from "@/components/ProductionChart.vue";
 </script>
 
 <template>
@@ -35,14 +36,15 @@ import HealthChart from "@/components/HealthChart.vue";
 
   <main>
 <!--    <img class="img-component" alt="blockchain" src="@/assets/chain.png" width="512" />-->
-    <ReadinessChart />
-    <LivenessChart />
-    <ValidityChart />
+<!--    <ReadinessChart />-->
+<!--    <LivenessChart />-->
+<!--    <ValidityChart />-->
   </main>
   <main>
-    <PlanetChart />
-    <NodeChart />
-    <HealthChart />
+
+    <ProductionChart />
+<!--    <NodeChart />-->
+<!--    <HealthChart />-->
   </main>
 </template>
 

@@ -10,7 +10,6 @@
 <script setup lang="ts">
 import { Chart, registerables } from 'chart.js'
 import type { ChartItem } from 'chart.js'
-
 import { onMounted, ref } from "vue";
 import { useLivenessStore } from "@/stores/liveness"
 
@@ -23,10 +22,6 @@ const alive = ref(0.0)
 
 const setAlive = () => {
   alive.value = livenessStore.liveness
-}
-
-const setLivenessChartData = () => {
-  // livenessChartData.value.data.datasets[0].data[0] = alive.value
 }
 
 onMounted(async () => {
@@ -52,7 +47,6 @@ const renderChart = () => {
   const canvas = <unknown> livenessChart.value as ChartItem
 
   if (canvas) {
-
       new Chart(canvas, {
       type: "polarArea",
       data: {

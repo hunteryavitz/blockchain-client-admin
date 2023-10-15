@@ -8,6 +8,7 @@
 </template>
 
 <script setup lang="ts">
+
 import { Chart, registerables } from 'chart.js'
 import type { ChartItem } from 'chart.js'
 

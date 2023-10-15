@@ -1,3 +1,5 @@
+const data1 = [1, 2, 3, 4, 5]
+const data2 = [1, 2, 3, 4, 5]
 export const planetChartData = {
     type: "line",
     data: {
@@ -5,7 +7,7 @@ export const planetChartData = {
         datasets: [
             {
                 label: "Transactions",
-                data: [0, 0, 1, 2, 379, 482, 227],
+                data: data1,
                 backgroundColor: "rgba(54,73,93,.5)",
                 borderColor: "#36495d",
                 borderWidth: 3,
@@ -13,7 +15,7 @@ export const planetChartData = {
             },
             {
                 label: "Blockchain Production",
-                data: [0.166, 2.081, 3.003, 0.323, 954.792, 285.886, 51.514],
+                data: data2,
                 backgroundColor: "rgba(71, 183,132,.5)",
                 borderColor: "#47b784",
                 borderWidth: 3,
