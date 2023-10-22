@@ -7,6 +7,8 @@ Unreleased
 **10/22/23**
 
 - [ADD Dashboard for Overall Health Metrics](#32)
+- [Fix Failing Unit Tests](#34)
+- [Typo](#35)
 
 **9/3/23**
 
