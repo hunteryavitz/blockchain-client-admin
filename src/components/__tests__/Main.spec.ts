@@ -6,4 +6,3 @@ describe('Main.vue', () => {
         expect(test).toBe(true)
     })
 })
-f
