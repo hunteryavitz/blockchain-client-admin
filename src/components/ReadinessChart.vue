@@ -1,6 +1,6 @@
 <template>
   <div class="meter">
-    <h3>ready: {{ ready }}</h3>
+    <h3>Ready: {{ (loading) ? 'loading' : ready }}</h3>
     <div>
       <canvas ref="readinessChart"></canvas>
     </div>
@@ -8,92 +8,73 @@
 </template>
 
 <script setup lang="ts">
-
 import { Chart, registerables } from 'chart.js'
 import type { ChartItem } from 'chart.js'
-
 import { onMounted, ref } from "vue";
 import { useReadinessStore } from "@/stores/readiness"
 
-Chart.register(...registerables)
-
-const readinessChart = ref(null)
-
 const readinessStore = useReadinessStore()
+const readinessChart = ref(null)
 const ready = ref(false)
+const loading = ref(true)
+
+Chart.register(...registerables)
 
 const setReady = () => {
   ready.value = readinessStore.readiness
 }
 
-const setReadinessChartData = () => {
-  // readinessChartData.value.data.datasets[0].data[0] = ready.value
-}
-
-onMounted(async () => {
-  // await useLivenessStore().checkReadiness()
-  // setReady()
-  await useReadinessStore().checkReadiness()
-  setReady()
-  // await getLiveness()
-  // setLivenessChartData()
-  renderChart()
-})
-
 setInterval(async () => {
-  // setReady()
   await readinessStore.checkReadiness()
   setReady()
-  // renderChart()
-  // myChart.update()
-  // setLivenessChartData()
-}, 5000)
+}, 10000)
+
+onMounted(async () => {
+  await readinessStore.checkReadiness()
+  setReady()
+  renderChart()
+})
 
 const renderChart = () => {
   const canvas = <unknown> readinessChart.value as ChartItem
 
   if (canvas) {
-
     new Chart(canvas, {
       type: "bar",
       data: {
-        labels: ['1', '2', '3'],
+        labels: (ready.value) ? ['READY'] : ['NOT READY'],
         datasets: [{
-          label: 'READY',
-          data: [0, 1, ready.value ? 1 : 0],
+          data: [ready.value ? 1 : 0],
           backgroundColor: [
-            // 'rgba(255, 99, 132, 0.2)',
             'rgba(0, 255, 0, 0.2)',
-            // 'rgba(0, 0, 255, 0.2)',
           ],
           borderColor: [
-            // 'rgba(255, 99, 132, 1)',
             'rgba(0, 255, 0, 1)',
-            // 'rgba(0, 0, 255, 1)',
           ],
           borderWidth: 1
         },
           {
-            label: 'NOT READY',
-            data: [-1, 0, ready.value ? 0 : -1],
+            data: [ready.value ? 0 : -1],
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
-              // 'rgba(0, 255, 0, 0.2)',
-              // 'rgba(0, 0, 255, 0.2)',
             ],
             borderColor: [
               'rgba(255, 99, 132, 1)',
-              // 'rgba(255, 255, 255, 1)',
-              // 'rgba(0, 0, 255, 1)',
             ],
             borderWidth: 1
           }]
       },
       options: {
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
         scales: {
           y: {
             beginAtZero: true,
-            stacked: true
+            stacked: true,
+            display: false
           },
           x: {
             stacked: true
@@ -101,8 +82,8 @@ const renderChart = () => {
         }
       }
     })
-    // chart.update()
   }
+  loading.value = false
 }
 </script>
 
@@ -113,6 +94,7 @@ canvas {
   background-color: #000;
   border-radius: 5px;
 }
+
 .meter {
   display: flex;
   flex-direction: column;

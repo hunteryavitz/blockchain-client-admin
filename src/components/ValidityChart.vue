@@ -1,6 +1,6 @@
 <template>
   <div class="meter">
-    <h3>valid: {{ valid }}</h3>
+    <h3>Valid: {{ (loading) ? 'loading' : valid }}</h3>
     <div>
       <canvas ref="validityChart"></canvas>
     </div>
@@ -10,85 +10,71 @@
 <script setup lang="ts">
 import { Chart, registerables } from 'chart.js'
 import type { ChartItem } from 'chart.js'
-
 import { onMounted, ref } from "vue";
 import { useValidityStore } from "@/stores/validity"
 
-Chart.register(...registerables)
-
-const validityChart = ref(null)
-
 const validityStore = useValidityStore()
+const validityChart = ref(null)
 const valid = ref(false)
+const loading = ref(true)
+
+Chart.register(...registerables)
 
 const setValid = () => {
   valid.value = validityStore.validity
 }
 
-const setValidityChartData = () => {
-  // validityChart.value.data.datasets[0].data[0] = alive.value
-}
+setInterval(async () => {
+  await validityStore.checkValidity()
+  setValid()
+}, 10000)
 
 onMounted(async () => {
   await validityStore.checkValidity()
   setValid()
   renderChart()
-  // setValidityChartData()
 })
-
-setInterval(async () => {
-  // setReady()
-  await validityStore.checkValidity()
-  setValid()
-  // renderChart()
-  // setLivenessChartData()
-}, 5000)
 
 const renderChart = () => {
   const canvas = <unknown> validityChart.value as ChartItem
 
   if (canvas) {
-
     new Chart(canvas, {
       type: "bar",
       data: {
-        labels: ['1', '2', '3'],
+        labels: (valid.value) ? ['VALID'] : ['NOT VALID'],
         datasets: [{
-          label: 'VALID',
-          data: [0, 1, valid.value ? 1 : 0],
+          data: [valid.value ? 1 : 0],
           backgroundColor: [
-            // 'rgba(255, 99, 132, 0.2)',
             'rgba(0, 255, 0, 0.2)',
-            // 'rgba(0, 0, 255, 0.2)',
           ],
           borderColor: [
-            // 'rgba(255, 99, 132, 1)',
             'rgba(0, 255, 0, 1)',
-            // 'rgba(0, 0, 255, 1)',
           ],
           borderWidth: 1
         },
           {
-            label: 'INVALID',
-            data: [-1, 0, valid.value ? 0 : -1],
+            data: [valid.value ? 0 : -1],
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
-              // 'rgba(0, 255, 0, 0.2)',
-              // 'rgba(0, 0, 255, 0.2)',
             ],
             borderColor: [
               'rgba(255, 99, 132, 1)',
-              // 'rgba(255, 255, 255, 1)',
-              // 'rgba(0, 0, 255, 1)',
             ],
             borderWidth: 1
           }]
       },
       options: {
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
         scales: {
           y: {
             beginAtZero: true,
-            stacked: true
+            stacked: true,
+            display: false
           },
           x: {
             stacked: true
@@ -96,8 +82,8 @@ const renderChart = () => {
         }
       }
     })
-    // chart.update()
   }
+  loading.value = false
 }
 </script>
 
@@ -108,6 +94,7 @@ canvas {
   background-color: #000;
   border-radius: 5px;
 }
+
 .meter {
   display: flex;
   flex-direction: column;

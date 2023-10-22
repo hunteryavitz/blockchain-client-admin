@@ -1,6 +1,6 @@
 <template>
   <div class="meter">
-    <h3>live: {{ alive }}</h3>
+    <h3>Live: {{ (loading) ? 'loading' : alive }}</h3>
     <div>
       <canvas ref="livenessChart"></canvas>
     </div>
@@ -13,35 +13,27 @@ import type { ChartItem } from 'chart.js'
 import { onMounted, ref } from "vue";
 import { useLivenessStore } from "@/stores/liveness"
 
-Chart.register(...registerables)
-
-const livenessChart = ref(null)
-
 const livenessStore = useLivenessStore()
+const livenessChart = ref(null)
 const alive = ref(0.0)
+const loading = ref(true)
+
+Chart.register(...registerables)
 
 const setAlive = () => {
   alive.value = livenessStore.liveness
 }
 
-onMounted(async () => {
-  // await useLivenessStore().checkReadiness()
-  // setReady()
+setInterval(async () => {
   await livenessStore.checkLiveness()
   setAlive()
-  // await getLiveness()
-  // setLivenessChartData()
+}, 10000)
+
+onMounted(async () => {
+  await livenessStore.checkLiveness()
+  setAlive()
   renderChart()
 })
-
-setInterval(async () => {
-  // setReady()
-  await livenessStore.checkLiveness()
-  setAlive()
-  // renderChart()
-  // myChart.update()
-  // setLivenessChartData()
-}, 5000)
 
 const renderChart = () => {
   const canvas = <unknown> livenessChart.value as ChartItem
@@ -50,10 +42,10 @@ const renderChart = () => {
       new Chart(canvas, {
       type: "polarArea",
       data: {
-        labels: ['Liveness', 'Green', 'Yellow', 'Grey', 'Blue'],
+        labels: ['Liveness', 'Request', 'Response', 'Network', 'Latency'],
         datasets: [{
           label: 'Initial Dataset',
-          data: [alive.value, 22, 44, 66, 88],
+          data: [alive.value, 76, 44, 80, 14],
           backgroundColor: [
             'rgb(255, 99, 132)',
             'rgb(75, 192, 192)',
@@ -72,6 +64,7 @@ const renderChart = () => {
       }
     })
   }
+  loading.value = false
 }
 </script>
 

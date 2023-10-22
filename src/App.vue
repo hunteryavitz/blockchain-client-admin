@@ -2,56 +2,63 @@
 import ValidityChart from "@/components/ValidityChart.vue";
 import ReadinessChart from "@/components/ReadinessChart.vue";
 import LivenessChart from "@/components/LivenessChart.vue";
-import PlanetChart from "@/components/PlanetChart.vue";
 import NodeChart from "@/components/NodeChart.vue";
 import HealthChart from "@/components/HealthChart.vue";
 import ProductionChart from "@/components/ProductionChart.vue";
 </script>
 
 <template>
-  <header>
-    <main class="wrapper">
-<!--      <HelloWorld msg="Blockchain Admin Panel" />-->
-      <br />
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/blockchain-admin">Blockchain Admin</RouterLink>
-        <RouterLink to="/service-admin">Service Admin</RouterLink>
-      </nav>
-      <br />
-      <RouterView />
 
-      <!--      <div>-->
+<!--  <header>-->
+<!--    <main class="wrapper">-->
+<!--      <HelloWorld msg="Blockchain Admin Panel" />-->
+<!--      <br />-->
+<!--      <nav>-->
+<!--        <RouterLink to="/">Home</RouterLink>-->
+<!--        <RouterLink to="/about">About</RouterLink>-->
+<!--        <RouterLink to="/blockchain-admin">Blockchain Admin</RouterLink>-->
+<!--        <RouterLink to="/service-admin">Service Admin</RouterLink>-->
+<!--      </nav>-->
+<!--      <br />-->
+<!--      <RouterView />-->
+<!---->
+<!--      <div>-->
 <!--        <Counter class="ui-component" />-->
 <!--        <ReadinessCheck class="ui-component" />-->
 <!--      </div>-->
 <!--      <div>-->
 <!--        <RouterView />-->
 <!--      </div>-->
-    </main>
-  </header>
-
+<!--    </main>-->
+<!--  </header>-->
+<!--    <img class="img-component" alt="blockchain" src="@/assets/chain.png" width="512" />-->
 <!--  <PolarChart />-->
 
-  <main>
-<!--    <img class="img-component" alt="blockchain" src="@/assets/chain.png" width="512" />-->
-<!--    <ReadinessChart />-->
-<!--    <LivenessChart />-->
-<!--    <ValidityChart />-->
-  </main>
-  <main>
+  <div class="hero">
+    <ReadinessChart />
+    <LivenessChart />
 
+    <ValidityChart />
     <ProductionChart />
-<!--    <NodeChart />-->
-<!--    <HealthChart />-->
-  </main>
+
+    <HealthChart />
+    <NodeChart />
+  </div>
 </template>
 
 <style scoped>
 header {
   line-height: 1.5;
   max-height: 100vh;
+}
+
+.hero {
+  display: contents;
+  background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(0, 0, 0, 1) 100%
+  );
 }
 
 main {

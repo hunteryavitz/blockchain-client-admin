@@ -1,6 +1,6 @@
 <template>
   <div class="meter">
-    <h3>production: very good</h3>
+    <h3>Production: {{ (loading) ? 'loading' : productionAverage}}</h3>
     <div>
       <canvas ref="productionChart"></canvas>
     </div>
@@ -10,22 +10,30 @@
 <script setup lang="ts">
 import {Chart, registerables} from "chart.js";
 import type { ChartItem } from "chart.js";
-import { onMounted, ref } from "vue";
+import {computed, onMounted, ref} from "vue";
 import { useProductionStore } from "@/stores/production";
+
+const productionStore = useProductionStore()
+const productionChart = ref(null)
+const loading = ref(true)
 
 Chart.register(...registerables);
 
-const productionChart = ref(null)
-
-const productionStore = useProductionStore()
-
-// const data1 = ref([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-// const data2 = ref([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 const production = ref({
   data: {
     dataset1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     dataset2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   }
+})
+
+const productionAverage = computed(() => {
+  let totalDivergence = 0
+  for (let i = 0; i < 12; i++) {
+    const expectedFulfillment = production.value.data.dataset1[i] / 10;
+    const actualFulfillment = production.value.data.dataset2[i];
+    totalDivergence += Math.abs(expectedFulfillment - actualFulfillment);
+  }
+  return totalDivergence.toFixed(2)
 })
 
 const data = {
@@ -66,21 +74,19 @@ const setProductionData = () => {
   production.value.data = productionStore.productionPayload.data
   data.datasets[0].data = production.value.data.dataset1
   data.datasets[1].data = production.value.data.dataset2
-  // data1.value = productionStore.data1
-  // data2.value = productionStore.data2
 }
-
-onMounted(async () => {
-  await productionStore.getProduction()
-  setProductionData()
-  renderChart()
-})
 
 setInterval(async () => {
   await productionStore.getProduction()
   setProductionData()
   // renderChart()
 }, 5000)
+
+onMounted(async () => {
+  await productionStore.getProduction()
+  setProductionData()
+  renderChart()
+})
 
 const renderChart = () => {
   const canvas = <unknown> productionChart.value as ChartItem
@@ -92,6 +98,7 @@ const renderChart = () => {
       options: options
     })
   }
+  loading.value = false
 }
 </script>
 

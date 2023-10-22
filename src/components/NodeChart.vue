@@ -1,6 +1,6 @@
 <template>
   <div class="meter">
-    <h3>nodes: {{nodesUp}} / {{nodesTotal}}</h3>
+    <h3>Nodes: {{ (loading) ? 'loading' : nodesUp + ' / ' + nodesTotal }}</h3>
     <div>
       <canvas ref="nodeChart"></canvas>
     </div>
@@ -10,26 +10,26 @@
 <script setup lang="ts">
 import { Chart, registerables } from 'chart.js'
 import type { ChartItem } from 'chart.js'
-
 import { onMounted, ref } from "vue";
 import { useNodeStore } from "@/stores/node"
 
-Chart.register(...registerables)
-
-const nodeChart = ref(null)
-
 const nodeStore = useNodeStore()
+const nodeChart = ref(null)
 const nodesUp = ref(0)
 const nodesTotal = ref(0)
+const loading = ref(true)
+
+Chart.register(...registerables)
 
 const setNodes = () => {
   nodesUp.value = nodeStore.nodesUp
   nodesTotal.value = nodeStore.nodesTotal
 }
 
-const setNodeChartData = () => {
-  // nodeChartData.value.data.datasets[0].data[0] = nodesUp.value
-}
+setInterval(async () => {
+  await nodeStore.checkNodes()
+  setNodes()
+}, 10000)
 
 onMounted(async () => {
   await nodeStore.checkNodes()
@@ -37,44 +37,23 @@ onMounted(async () => {
   renderChart()
 })
 
-setInterval(async () => {
-  await nodeStore.checkNodes()
-  setNodes()
-}, 5000)
-
 const renderChart = () => {
   const canvas = <unknown> nodeChart.value as ChartItem
 
   if (canvas) {
-
     const data = {
       datasets: [{
-        label: 'Scatter Dataset',
-        data: [{
-          x: -10,
-          y: 0
-        }, {
-          x: 0,
-          y: 10
-        }, {
-          x: 10,
-          y: 5
-        }, {
-          x: -7,
-          y: 3
-        }, {
-          x: 1,
-          y: 1
-        }, {
-          x: -2,
-          y: 8
-        }, {
-          x: 6,
-          y: 4
-        }, {
-          x: 0.5,
-          y: 5.5
-        }],
+        label: 'Nodes',
+        data: [
+          {x: 1, y: 3},
+          {x: 2, y: 10},
+          {x: 3, y: 5},
+          {x: 4, y: 3},
+          {x: 5, y: 1},
+          {x: 6, y: 8},
+          {x: 7, y: 4},
+          {x: 8, y: 12}
+        ],
         backgroundColor: 'rgb(255, 255, 0)'
       }],
     }
@@ -95,8 +74,8 @@ const renderChart = () => {
       },
     });
   }
+  loading.value = false
 }
-
 </script>
 
 <style scoped>
