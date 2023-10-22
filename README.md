@@ -16,7 +16,7 @@ yarn install
 
 **Build and Compile Local**
 ```shell
-yarn dev
+vite
 ```
 
 **Run Unit Tests**
@@ -24,11 +24,23 @@ yarn dev
 yarn vitetest
 ```
 
-The admin client has the following functionality:
+The admin client has the following components:
 
-- Perform Readiness Check
-- Fetch Blockchain from API
-- Verify Blockchain Integrity
+- Admin Panel
+  - Used to monitor the health of the blockchain
+    - [X] Ready
+    - [X] Live
+    - [X] Valid
+    - [X] Production
+    - [ ] Nodes
+    - [ ] Health
+
+- Office Panel
+  - Used to monitor the transactions and life cycles
+
+There are 2 main components to this web client.  One is blockchain admin facing, which provides metrics on the health of 
+the blockchain.  The other is user facing, which provides a CRUD interface for tracking transactions and transaction 
+life-cycles.
 
 ### Summary
 The aim of this client is to provide an admin panel for the blockchain project.

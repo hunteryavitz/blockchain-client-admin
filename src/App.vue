@@ -1,31 +1,49 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-import Counter from "@/components/Counter.vue";
-import ReadinessCheck from "@/components/ReadinessCheck.vue";
+import ValidityChart from "@/components/ValidityChart.vue";
+import ReadinessChart from "@/components/ReadinessChart.vue";
+import LivenessChart from "@/components/LivenessChart.vue";
+import NodeChart from "@/components/NodeChart.vue";
+import HealthChart from "@/components/HealthChart.vue";
+import ProductionChart from "@/components/ProductionChart.vue";
 </script>
 
 <template>
-  <header>
-    <main class="wrapper">
-      <HelloWorld msg="Blockchain Admin Panel" />
-      <br />
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-      <br />
-      <div>
-        <Counter class="ui-component" />
-        <ReadinessCheck class="ui-component" />
-      </div>
-    </main>
-  </header>
 
-  <main>
-    <img class="img-component" alt="blockchain" src="@/assets/chain.png" width="512" />
-    <RouterView />
-  </main>
+<!--  <header>-->
+<!--    <main class="wrapper">-->
+<!--      <HelloWorld msg="Blockchain Admin Panel" />-->
+<!--      <br />-->
+<!--      <nav>-->
+<!--        <RouterLink to="/">Home</RouterLink>-->
+<!--        <RouterLink to="/about">About</RouterLink>-->
+<!--        <RouterLink to="/blockchain-admin">Blockchain Admin</RouterLink>-->
+<!--        <RouterLink to="/service-admin">Service Admin</RouterLink>-->
+<!--      </nav>-->
+<!--      <br />-->
+<!--      <RouterView />-->
+<!---->
+<!--      <div>-->
+<!--        <Counter class="ui-component" />-->
+<!--        <ReadinessCheck class="ui-component" />-->
+<!--      </div>-->
+<!--      <div>-->
+<!--        <RouterView />-->
+<!--      </div>-->
+<!--    </main>-->
+<!--  </header>-->
+<!--    <img class="img-component" alt="blockchain" src="@/assets/chain.png" width="512" />-->
+<!--  <PolarChart />-->
+
+  <div class="hero">
+    <ReadinessChart />
+    <LivenessChart />
+
+    <ValidityChart />
+    <ProductionChart />
+
+    <HealthChart />
+    <NodeChart />
+  </div>
 </template>
 
 <style scoped>
@@ -34,11 +52,21 @@ header {
   max-height: 100vh;
 }
 
+.hero {
+  display: contents;
+  background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(0, 0, 0, 1) 100%
+  );
+}
+
 main {
   padding: 2rem;
   border: 1px solid white;
   border-radius: 0.5rem;
   background-color: black;
+  width: 100%;
 }
 
 .img-component {
