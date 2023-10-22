@@ -2,13 +2,14 @@
 
 Unreleased
 
-*v0.0.1*
+*v0.0.11*
 
 **10/22/23**
 
 - [ADD Dashboard for Overall Health Metrics](#32)
 - [Fix Failing Unit Tests](#34)
-- [Typo](#35)
+- [Typo](#36)
+- [Fix Build](#38)
 
 **9/3/23**
 
