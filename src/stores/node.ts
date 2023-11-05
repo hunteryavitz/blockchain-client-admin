@@ -12,8 +12,8 @@ export const useNodeStore = defineStore('node', () => {
                 .then((response) => {
                     // nodesUp.value = response.data.nodesUp
                     // nodesTotal.value = response.data.nodesTotal
-                    nodesUp.value = 131
-                    nodesTotal.value = 157
+                    nodesUp.value = 5
+                    nodesTotal.value = 10
                 })
                 .catch((error: any) => {
                     console.log(error)

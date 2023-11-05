@@ -9,6 +9,14 @@ import ProductionChart from "@/components/ProductionChart.vue";
 
 <template>
 
+  <div class="nav-bar">
+    <RouterLink to="/">Home</RouterLink>
+    <RouterLink to="/about">About</RouterLink>
+    <RouterLink to="/blockchain-admin">Blockchain Admin</RouterLink>
+    <RouterLink to="/service-admin">Service Admin</RouterLink>
+    <RouterView />
+  </div>
+
 <!--  <header>-->
 <!--    <main class="wrapper">-->
 <!--      <HelloWorld msg="Blockchain Admin Panel" />-->
@@ -35,14 +43,13 @@ import ProductionChart from "@/components/ProductionChart.vue";
 <!--  <PolarChart />-->
 
   <div class="hero">
-    <ReadinessChart />
+    <HealthChart />
+    <NodeChart />
     <LivenessChart />
 
     <ValidityChart />
     <ProductionChart />
-
-    <HealthChart />
-    <NodeChart />
+    <ReadinessChart />
   </div>
 </template>
 
@@ -126,5 +133,18 @@ nav a:first-of-type {
     padding: 1rem 0;
     margin-top: 1rem;
   }
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  height: 100px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 </style>

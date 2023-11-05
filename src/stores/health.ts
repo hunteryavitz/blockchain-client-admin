@@ -12,7 +12,7 @@ export const useHealthStore= defineStore('health', () => {
 
     async function checkHealth() {
         try {
-            await HTTP.get("/health")
+            await HTTP.get("/healthMetric/health")
                 .then((response) => {
                     console.log(response.data)
                     health.value = response.data

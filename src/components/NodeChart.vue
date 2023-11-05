@@ -43,19 +43,60 @@ const renderChart = () => {
   if (canvas) {
     const data = {
       datasets: [{
-        label: 'Nodes',
+        label: 'Nodes Up',
         data: [
-          {x: 1, y: 3},
-          {x: 2, y: 10},
-          {x: 3, y: 5},
-          {x: 4, y: 3},
-          {x: 5, y: 1},
-          {x: 6, y: 8},
-          {x: 7, y: 4},
-          {x: 8, y: 12}
+          {
+            "x": 1,
+            "y": 35
+          },
+          {
+            "x": 2,
+            "y": 43
+          },
+          {
+            "x": 5,
+            "y": 38
+          },
+          {
+            "x": 8,
+            "y": 56
+          },
+          {
+            "x": 10,
+            "y": 32
+          }
         ],
-        backgroundColor: 'rgb(255, 255, 0)'
-      }],
+      },
+        {
+          label: 'Nodes Down',
+          data: [
+            {
+              "x": 3,
+              "y": 0
+            },
+            {
+              "x": 4,
+              "y": 2
+            },
+            {
+              "x": 6,
+              "y": 1
+            },
+            {
+              "x": 7,
+              "y": 0
+            },
+            {
+              "x": 9,
+              "y": 0
+            }
+          ]
+        }
+      ],
+        backgroundColor: [
+            'rgb(255, 255, 0)',
+            'rgb(255, 30, 30)'
+        ],
     }
     new Chart(canvas, {
       type: 'scatter',
