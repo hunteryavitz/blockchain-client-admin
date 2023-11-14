@@ -1,0 +1,1 @@
+import{_ as n,o as t,c,a as e}from"./index-e3452567.js";const s={},o=e("h1",null,"Service Admin",-1),i=e("p",null,"This is the Service Admin panel for the Blockchain Web Client.",-1),l=e("small",null,"It's all here.",-1),a=[o,i,l];function r(_,d){return t(),c("main",null,a)}const m=n(s,[["render",r]]);export{m as default};

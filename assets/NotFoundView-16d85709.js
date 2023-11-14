@@ -1,0 +1,1 @@
+import{_ as t,o,c as n,F as s,a as e}from"./index-e3452567.js";const l={},a=e("h1",null,"404 - Not Found",-1),c=e("p",null,"There's literally nothing here.",-1),r=e("small",null,"Literally.",-1);function _(i,d){return o(),n(s,null,[a,c,r],64)}const h=t(l,[["render",_]]);export{h as default};
