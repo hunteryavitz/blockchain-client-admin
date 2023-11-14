@@ -2,7 +2,11 @@
 
 Unreleased
 
-*v0.0.11*
+*v0.0.12*
+
+**11/13/23**
+
+- [ADD Component to Display Node Network Status](#41)
 
 **10/22/23**
 
