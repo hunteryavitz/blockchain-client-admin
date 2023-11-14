@@ -32,7 +32,7 @@ The admin client has the following components:
     - [X] Live
     - [X] Valid
     - [X] Production
-    - [ ] Nodes
+    - [X] Nodes
     - [ ] Health
 
 - Office Panel
