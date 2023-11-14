@@ -8,16 +8,23 @@
 </template>
 
 <script setup lang="ts">
-import { Chart, registerables } from 'chart.js'
-import type { ChartItem } from 'chart.js'
 import { onMounted, ref } from "vue";
 import { useNodeStore } from "@/stores/node"
 
+import { Chart, registerables } from 'chart.js'
+import type { ChartItem } from 'chart.js'
+
+import type { NodeData } from "@/types/NodeNetworkHealthTypes";
+
 const nodeStore = useNodeStore()
 const nodeChart = ref(null)
+
 const nodesUp = ref(0)
 const nodesTotal = ref(0)
+
 const loading = ref(true)
+
+const nodeNetworkHealth = ref({} as NodeData)
 
 Chart.register(...registerables)
 
@@ -26,14 +33,22 @@ const setNodes = () => {
   nodesTotal.value = nodeStore.nodesTotal
 }
 
+const setNodeNetworkHealth = () => {
+  nodeNetworkHealth.value = nodeStore.nodeNetworkHealthData
+}
+
 setInterval(async () => {
   await nodeStore.checkNodes()
+  await nodeStore.getNodeNetworkHealth()
   setNodes()
+  setNodeNetworkHealth()
 }, 10000)
 
 onMounted(async () => {
   await nodeStore.checkNodes()
+  await nodeStore.getNodeNetworkHealth()
   setNodes()
+  setNodeNetworkHealth()
   renderChart()
 })
 
@@ -41,25 +56,9 @@ const renderChart = () => {
   const canvas = <unknown> nodeChart.value as ChartItem
 
   if (canvas) {
-    const data = {
-      datasets: [{
-        label: 'Nodes',
-        data: [
-          {x: 1, y: 3},
-          {x: 2, y: 10},
-          {x: 3, y: 5},
-          {x: 4, y: 3},
-          {x: 5, y: 1},
-          {x: 6, y: 8},
-          {x: 7, y: 4},
-          {x: 8, y: 12}
-        ],
-        backgroundColor: 'rgb(255, 255, 0)'
-      }],
-    }
     new Chart(canvas, {
       type: 'scatter',
-      data: data,
+      data: nodeNetworkHealth.value.data,
       options: {
         responsive: true,
         plugins: {
